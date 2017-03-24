@@ -1,1 +1,1 @@
-# ElectronicAnimations.github.io
+# ElectricalAnimations.github.io
