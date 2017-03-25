@@ -15,7 +15,7 @@ void setup() {
   currentTime = millis();
   accumulator = 0.0;
 
-  vf = new VectorField(25, .1);
+  vf = new VectorField(20, .1);
   wires = new ArrayList<Wire>();
   tool = new ToolBar();
 
