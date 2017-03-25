@@ -142,7 +142,7 @@ class VectorField {
   void zeroField() {
     for(int i = 0; i < vf.length; i++) {
       for(int j = 0; j < vf.length; j++) {
-        vf[i][j].set(0, 0);
+        vf[i][j].pvSet(0, 0);
       }
     }
   }
@@ -198,12 +198,14 @@ class PointVector extends PVector {
     this.py = py;
   }
 
-  PVector set(float x, float y) {
-    return super.set(x, y);
+  void pvSet(float x, float y) {
+    this.x = x;
+    this.y = y;
   }
 
-  PVector add(PVector vec) {
-    return super.add(vec);
+  void pvAdd(PVector vec) {
+    this.x += vec.x;
+    this.y += vec.y;
   }
 }
 interface Draggable {
@@ -250,7 +252,7 @@ class Wire implements Draggable {
       temp.rotate(HALF_PI);
     }
 
-    pv.add(temp);
+    pv.pvAdd(temp);
   }
 
   void cos(double t, double dt, float mag) {
