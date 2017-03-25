@@ -95,6 +95,16 @@ void mouseReleased() {
     wire.selected = false;
   }
 }
+class PointVector extends PVector {
+
+  float px, py;
+
+  PointVector(float px, float py, float x, float y) {
+    super(x, y);
+    this.px = px;
+    this.py = py;
+  }
+}
 class VectorField {
   private PointVector[][] vf;
   int size;
@@ -118,8 +128,8 @@ class VectorField {
   }
 
   void show() {
-    for(int i = 0; i < vf.length; i++) {
-      for(int j = 0; j < vf.length; j++) {
+    for(int i = 0; i < this.size; i++) {
+      for(int j = 0; j < this.size; j++) {
         PointVector pv = vf[i][j];
         line(pv.px, pv.py, pv.px + pv.x, pv.py + pv.y);
         ellipse(pv.px + pv.x, pv.py + pv.y, 2, 2);
@@ -128,63 +138,13 @@ class VectorField {
   }
 
   void zeroField() {
-    for(int i = 0; i < vf.length; i++) {
-      for(int j = 0; j < vf.length; j++) {
+    for(int i = 0; i < this.size; i++) {
+      for(int j = 0; j < this.size; j++) {
         vf[i][j].set(0, 0);
       }
     }
   }
 
-}
-class ToolBar {
-
-  float wireInX, wireInY;
-  float wireOutX, wireOutY;
-
-  ToolBar() {
-    wireInX = width/2 - 20;
-    wireInY = 20;
-    wireOutX = width/2 + 20;
-    wireOutY = 20;
-  }
-
-  void show() {
-    drawToolBox();
-    drawWire(wireInX, wireInY, true);
-    drawWire(wireOutX, wireOutY, false);
-  }
-
-  void drawToolBox() {
-    strokeWeight(2);
-    fill(255);
-    rect(0, 0, width, 40);
-    strokeWeight(1);
-    fill(0);
-  }
-
-  boolean addWireIn() {
-    if(dist(mouseX, mouseY, wireInX, wireInY) < 15) {
-      return true;
-    }
-    return false;
-  }
-
-  boolean addWireOut() {
-    if(dist(mouseX, mouseY, wireOutX, wireOutY) < 15) {
-      return true;
-    }
-    return false;
-  }
-}
-class PointVector extends PVector {
-
-  float px, py;
-
-  PointVector(float px, float py, float x, float y) {
-    super(x, y);
-    this.px = px;
-    this.py = py;
-  }
 }
 interface Draggable {
   boolean mouseOver();
@@ -272,5 +232,45 @@ void drawWire(float x, float y, boolean out) {
   } else {
     fill(0);
     ellipse(x, y, 2, 2);
+  }
+}
+class ToolBar {
+
+  float wireInX, wireInY;
+  float wireOutX, wireOutY;
+
+  ToolBar() {
+    wireInX = width/2 - 20;
+    wireInY = 20;
+    wireOutX = width/2 + 20;
+    wireOutY = 20;
+  }
+
+  void show() {
+    drawToolBox();
+    drawWire(wireInX, wireInY, true);
+    drawWire(wireOutX, wireOutY, false);
+  }
+
+  void drawToolBox() {
+    strokeWeight(2);
+    fill(255);
+    rect(0, 0, width, 40);
+    strokeWeight(1);
+    fill(0);
+  }
+
+  boolean addWireIn() {
+    if(dist(mouseX, mouseY, wireInX, wireInY) < 15) {
+      return true;
+    }
+    return false;
+  }
+
+  boolean addWireOut() {
+    if(dist(mouseX, mouseY, wireOutX, wireOutY) < 15) {
+      return true;
+    }
+    return false;
   }
 }
