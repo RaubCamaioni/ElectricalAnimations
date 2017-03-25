@@ -104,6 +104,14 @@ class PointVector extends PVector {
     this.px = px;
     this.py = py;
   }
+
+  PVector set(float x, float y) {
+     return super.set(x, y);
+  }
+
+  PVector add(PVector vec) {
+    return super.add(vec);
+  }
 }
 class VectorField {
   private PointVector[][] vf;
