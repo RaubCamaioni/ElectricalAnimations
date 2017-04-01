@@ -52,7 +52,7 @@ void disp() {
 
 void printFPS() {
   if(frameCount % 50 == 0) {
-    console.log(rameCount / (millis()/1000f));
+    println(rameCount / (millis()/1000f));
   }
 	
 }
