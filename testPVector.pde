@@ -41,6 +41,7 @@ void disp() {
   pg.beginDraw();
   pg.background(255);
   pg.endDraw();
+  image(pg, 0, 0);
 }
 
 
